@@ -46,6 +46,6 @@ class ProductsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def product_params
-      params.require(:product).permit(:name, :type, :price, :category)
+      ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: [:name, :size, :price, :category])
     end
 end
